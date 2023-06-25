@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX小練習</title>
+</head>
+<body>
+    <div id="test"></div>
+    
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 支持 React 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 用于将 JSX 转为 JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type="text/babel">
+        // 區分[JS語句(代碼)],[JS表達式]
+        //     1.表達式: 一個表達式會產生一個值，可以放在任何一個需要值的地方
+        //         表達式範例:
+        //         (1).a
+        //         (2).a+b
+        //         (3).demo(1)
+        //         (4).arr.map()
+        //         (5).function test(){}
+        // 2.語句(代碼):
+                    // 語句範例
+                    // (1).if(){}
+                    // (2).for(){}
+                    // (3).switch(){case:xxxx}
+        const Data = ['蜂后','大黃蜂','工蜂']
+        const VDOM = (
+        <div>
+            <h2>小蜜蜂</h2>
+            <ul>
+                {
+                    Data.map((item,index)=>{
+                        return <li key={index}>{item}</li>
+                    })
+                }
+            </ul>
+        </div>
+        )
+        ReactDOM.render(VDOM,document.getElementById('test'))
+    </script>
+    
+</body>
+</html>

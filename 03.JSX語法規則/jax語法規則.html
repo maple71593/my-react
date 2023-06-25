@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.虛擬DOM與真實DOM</title>
+    <style>
+      .title{
+        width: 300px;
+        height: 200px;
+        background-color: rebeccapurple;
+      }
+    </style>
+</head>
+<body>
+    <div id="test">哈哈</div>
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 支持 React 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 用于将 JSX 转为 JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type="text/babel">
+      const myId = 'Shlaib'
+      const myData = 'hi Lai sihong'
+      //創建虛擬DOM
+      const VDOM = (
+        <h2 className='title' id={myId.toLowerCase()}>
+          <span style={{color:'white',fontSize:'30px'}}>{myData.toLowerCase()}</span>
+          <input type="text"/>
+          
+        </h2>
+        )
+        // 渲染虛擬DOM至頁面
+      ReactDOM.render(VDOM,document.getElementById('test'))
+      // jsx語法規則
+      // 1.定義需DOM時 不要用引號
+      // 2.標籤中混入JS表達式時 要使用{}
+      // 3.設定CSS樣式引入 不要使用class 要使用className
+      // 4.內部樣式CSS 要使用style={{屬性:樣式}}
+      // 5.虛擬DOM 只能有一個根標籤
+      // 6.標籤必須閉合 有頭有尾
+      // 7.標籤首字幕
+        // (1)若小寫字母開頭，則會改為HTML同名元素，若沒有就報錯
+        // (2)若大寫字母開頭，React就會去渲染對應的組件，若無定義組件，則報錯
+    </script>
+    
+    
+</body>
+</html>
