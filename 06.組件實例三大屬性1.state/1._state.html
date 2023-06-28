@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>類式組件</title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 支持 React 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 用于将 JSX 转为 JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Hotcool extends React.Component {
+            constructor(prpos) {
+                super(prpos)
+                //初始化狀態
+                this.state = { isHot: false ,wind:'微風'}
+                //React2021全家桶 第16集 https://www.youtube.com/watch?v=DUrLkxsihO4&list=PLmOn9nNkQxJFJXLvkNsGsoCUxJLqyLGxu&index=17
+                //在尚硅谷教學中，老師使用一般函數與下面的this.baka = this.baka.bind(this)確保組件的事件處理程序在正確的this上下文中使用
+                //而現在，在此使用的箭頭函數，其特性是自動綁定當前上下文，故可以省略this.baka = this.baka.bind(this)這一行
+                // this.baka = this.baka.bind(this) (以註解)
+            }
+            render() {
+                // 讀取狀態
+                const { isHot } = this.state
+                //推薦使用第三種方法的事件綁定 onClick 中間的C 一定要大寫 
+                //使用箭頭涵數時 其涵數要在ReactDOM.render之前調用(簡單來說就是寫在React.Component裡面) 否則失效
+                return <h1 onClick={this.baka}>今天的天氣挺{isHot ? '熱' : '冷'}的</h1>
+            }
+            baka = () => this.setState({ isHot: !this.state.isHot })
+            // 尚硅谷老師所使用的一般涵數(以註解)
+            // function baka () {
+            //     console.log(this);                
+            // }
+        }
+        ReactDOM.render(<Hotcool />, document.getElementById('test'))
+    </script>
+
+
+</body>
+
+</html>

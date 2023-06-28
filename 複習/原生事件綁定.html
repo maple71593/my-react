@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">按鈕1</button>
+    <button id="btn2">按鈕2</button>
+    <button onclick="baka()">按鈕3</button>
+    <script>
+        let btn1 = document.getElementById('btn1');
+        btn1.addEventListener('click',()=>{
+            alert('點屁點')
+        })
+
+        let btn2 = document.getElementById('btn2');
+        btn2.onclick=()=>{
+            alert('你玩但了')
+        }
+
+        
+        baka = () => alert('無情典籍') 
+    </script>
+</body>
+</html>

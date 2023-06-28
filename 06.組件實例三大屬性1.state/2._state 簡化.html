@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>類式組件</title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 支持 React 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 用于将 JSX 转为 JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        // 定義一個名為 Hotcool 的函式組件
+        function Hotcool() {
+            // 使用 React.useState Hook 創建一個名為 isHot 的狀態變數，初始值為 false
+            // 同時，使用解構賦值將 isHot 和更新該狀態的函數 setIsHot 分別賦值給相應的變數
+            const [isHot, setIsHot] = React.useState(false);
+
+            // 定義一個名為 handleClick 的箭頭函數，用於處理點擊事件
+            const handleClick = () => {
+                // 調用 setIsHot 函數來更新 isHot 的值。通過取反運算符 ! 將其從當前值切換為相反的值
+                setIsHot(!isHot);
+            };
+
+            // 返回一個 JSX 元素，即顯示天氣資訊的 <h1> 標籤
+            // 使用條件（三元）表達式 {isHot ? '熱' : '冷'} 根據 isHot 的值來決定顯示的文字
+            return <h1 onClick={handleClick}>今天的天氣挺{isHot ? '熱' : '冷'}的</h1>;
+        }
+
+        // 使用 ReactDOM.render 方法將 <Hotcool> 組件渲染到具有 id 為 'test' 的 HTML 元素中
+        ReactDOM.render(<Hotcool />, document.getElementById('test'));
+    </script>
+
+
+</body>
+
+</html>

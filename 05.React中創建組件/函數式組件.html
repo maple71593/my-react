@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函數式組件</title>
+</head>
+<body>
+    <div id="test"></div>
+    
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 支持 React 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 用于将 JSX 转为 JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type="text/babel">
+        // 創立函數式組件(涵式名就是組件名) 適用於'簡單組件'
+            function MyComponent(){
+            console.log(this);//此處的this是undefind,因為babel編譯後開啟了嚴格模式
+            return <h2>函數式組件</h2>
+        }
+        // 渲染到頁面
+        ReactDOM.render(<MyComponent/>,document.getElementById('test'))      
+        // 1.React解析組件標籤，找到了Mycomponent組件。
+        //  2.發現組件是使用函數定義的，隨後調用該函數，將返回的虛擬DOM轉為真實DOM，隨後呈現在頁面中
+        </script>
+        
+    
+</body>
+</html>
