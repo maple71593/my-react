@@ -19,13 +19,12 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <!-- 用于将 JSX 转为 JS -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
+    <script src="prop-types.js"></script>
 
 
 
 
     <script type="text/babel">
-        import PropTypes from 'prop-types';
         class Person extends React.Component {
             static propTypes = {
                 name: PropTypes.string.isRequired,
@@ -33,23 +32,26 @@
                 job: PropTypes.string,
                 age: PropTypes.number,
             };
+
             static defaultProps = {
                 sex: '不男不女',
                 age: 16,
             };
+
             render() {
-                //解構附值
-                const { name, sex, job, age } = this.props
+                //解构赋值
+                const { name, sex, job, age } = this.props;
                 return (
                     <ul>
-                        <li>名子:{name}</li>
-                        <li>性別:{sex}</li>
-                        <li>工作:{job}</li>
-                        <li>年齡:{age + 1}</li>
+                        <li>名字: {name}</li>
+                        <li>性别: {sex}</li>
+                        <li>工作: {job}</li>
+                        <li>年龄: {age + 1}</li>
                     </ul>
-                )
+                );
             }
         }
+
 
         //輸出值
         createRoot.render(<Person name='jarry' sex='girl' job='severer' age={18} />, document.getElementById('test'))
