@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 支持 React 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 用于将 JSX 转为 JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        // 尚硅谷課程是以React 17/16 版本的教學 在現今React 18 的發布新的語法
+        // 在剛剛的課程學習的時候，發現console有報錯，報錯的內容為ReactDOM.render在React 18中將不在支持，請改用 createRoot
+        // 查明相關資料後，自己嘗試改成createRoot寫法，往後課程會嘗試將課程寫法 改成React18的寫法
+
+        class Person extends React.Component {
+            render() {
+                const { name, sex, job, age } = this.props;
+                return (
+                    <ul>
+                        <li>名子: {name}</li>
+                        <li>性別: {sex}</li>
+                        <li>工作: {job}</li>
+                        <li>年齡: {age+1}</li>
+                    </ul>
+                );
+            }
+        }
+
+
+        ReactDOM.createRoot(document.getElementById('test')).render(
+            <Person name='jarry' sex='girl' job='severer' age={18} />
+        );
+        ReactDOM.createRoot(document.getElementById('test2')).render(
+            <Person name='度比杜雅' sex='boy' job='none' age={18} />
+        );
+        const p = { name: '黃景勝', sex: 'boy', job: '公職', age: 18 };
+        ReactDOM.createRoot(document.getElementById('test3')).render(<Person {...p} />);
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

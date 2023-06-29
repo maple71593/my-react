@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr =[1,2,3,4,5];
+        let arr2 = [6,7,8,9,10];
+        //輸出數組
+        console.log(arr);
+        //個別輸出
+        console.log(...arr);
+        //個別輸出 連接數組
+        console.log(...arr,...arr2);
+
+
+        //在函數中使用
+        function sum (...numbers){
+            return numbers.reduce((preValue,currentValue)=>{
+                return preValue + currentValue
+            }
+            )
+        }
+        console.log(sum(1,2,3,4));
+        
+
+
+        
+        //創建了一個Person (注意開頭為大寫)
+        let Person = {name : 'tom',age : 18};
+        //創建Person2 複製了Person
+        let Person2 = {...Person}
+        //將Person內部的name 更改為jerry
+        Person.name = 'jerry';
+        // log Person2 結果為{name: 'tom', age: 18}
+        //被複製的Person 不被影響
+        console.log(Person2);
+        //log Person 結果為{name: 'jerry', age: 18}
+        console.log(Person);
+    </script>
+</body>
+</html>
