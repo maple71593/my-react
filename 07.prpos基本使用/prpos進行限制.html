@@ -8,59 +8,57 @@
 </head>
 
 <body>
-    <div id="test"></div>
-    <div id="test2"></div>
-    <div id="test3"></div>
+   <div id="test"></div>
+<div id="test2"></div>
+<div id="test3"></div>
 
+<!-- React 核心库 -->
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<!-- 支持 React 操作 DOM -->
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<!-- 用于将 JSX 转为 JS -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- prop-type.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
 
-    <!-- React 核心库 -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <!-- 支持 React 操作 DOM -->
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <!-- 用于将 JSX 转为 JS -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="prop-types.js"></script>
+<script type="text/babel">
+  const { createRoot } = ReactDOM;
 
+  class Person extends React.Component {
+    static propTypes = {
+      name: PropTypes.string.isRequired,
+      sex: PropTypes.string,
+      job: PropTypes.string,
+      age: PropTypes.number,
+    };
 
+    static defaultProps = {
+      sex: '不男不女',
+      age: 16,
+    };
 
+    render() {
+      // 解构赋值
+      const { name, sex, job, age } = this.props;
+      return (
+        <ul>
+          <li>名字: {name}</li>
+          <li>性别: {sex}</li>
+          <li>工作: {job}</li>
+          <li>年龄: {age + 1}</li>
+        </ul>
+      );
+    }
+  }
 
-    <script type="text/babel">
-        class Person extends React.Component {
-            static propTypes = {
-                name: PropTypes.string.isRequired,
-                sex: PropTypes.string,
-                job: PropTypes.string,
-                age: PropTypes.number,
-            };
+  // 輸出值
+  const DOM = ReactDOM
+  DOM.createRoot(document.getElementById('test')).render(<Person name='jarry' sex='girl' job='severer' age={18} />);
+  DOM.createRoot(document.getElementById('test2')).render(<Person name='度比杜雅' sex='boy' job='none' age={18} />);
 
-            static defaultProps = {
-                sex: '不男不女',
-                age: 16,
-            };
-
-            render() {
-                //解构赋值
-                const { name, sex, job, age } = this.props;
-                return (
-                    <ul>
-                        <li>名字: {name}</li>
-                        <li>性别: {sex}</li>
-                        <li>工作: {job}</li>
-                        <li>年龄: {age + 1}</li>
-                    </ul>
-                );
-            }
-        }
-
-
-        //輸出值
-        createRoot.render(<Person name='jarry' sex='girl' job='severer' age={18} />, document.getElementById('test'))
-        createRoot.render(<Person name='度比杜雅' sex='boy' job='none' age={18} />, document.getElementById('test2'))
-
-
-        const p = { name: '黃景勝', sex: 'boy', job: '公職', age: 18 }
-        createRoot.render(<Person {...p} />, document.getElementById('test3'))
-    </script>
+  const p = { name: '黃景勝', sex: 'boy', job: '公職', age: 18 };
+  DOM.createRoot(document.getElementById('test3')).render(<Person {...p} />);
+</script>
 
 
 
