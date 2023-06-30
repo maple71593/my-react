@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 支持 React 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 用于将 JSX 转为 JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+           inputRef = React.createRef()
+           inputRef2 = React.createRef()
+
+           showData= ()=>{
+            console.log(this.inputRef.current.value);
+           }
+           showData2= ()=>{
+            console.log(this.inputRef2.current.value);
+           }
+            render() {
+                return (
+                    <div>
+                        <input ref={this.inputRef} type="text" placeholder='請按旁邊的按鈕觸發條件' defaultValue='我是createRef' />
+                        <button onClick={this.showData}>點我</button>
+                        <input ref={this.inputRef2} type="text" onBlur={this.showData2} placeholder='請點我後，再去按其他地方觸發條件' defaultValue='我是預設內容v2' />
+                    </div>
+                )
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('test')).render(<Demo />)
+    </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 支持 React 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 用于将 JSX 转为 JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+       class Demo extends React.Component{
+        checkme = ()=>{
+            const {input} = this
+            console.log(input.value);
+        }
+        change=(c)=>{
+            this.input = c;
+        }
+        baka =()=>{
+           const {isHot} = this.state
+           this.setState({isHot:!isHot})
+        }
+        render(){
+            const {isHot} =this.state
+            return(
+                <div>
+                    <h1>今天的天氣挺{isHot ? '熱' : '冷'}的</h1>
+                    <input ref={this.change} type="text"/>
+                    <button onClick={this.checkme}>點我</button>
+                    <button onClick={this.baka}>點我換天氣</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.createRoot(document.getElementById('test')).render(<Demo/>)
+    </script>
+<!-- 課程代碼有問題 無法執行 接下去學習 比較熟了再來debug -->
+
+
+
+</body>
+
+</html>
