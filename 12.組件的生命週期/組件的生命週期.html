@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 支持 React 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 用于将 JSX 转为 JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component{
+
+            state = {opacity:1}
+
+            btn =()=>{
+                //卸載組件
+                // 版本React17 教學方法已過時
+                // ReactDOM.unmountComponentAtNode(ReactDOM.createRoot(document.getElementById('test')))
+                // 此處採用React 18 版本
+                root.unmount();
+            }
+            //組件掛載完畢
+            componentDidMount(){
+                this.timer = setInterval(()=>{
+                    let {opacity} = this.state
+                    opacity -= 0.1
+                    if(opacity <=0 ) opacity =1
+                    this.setState({opacity})
+                },200);
+            }
+            // 組件將要卸載
+            componentWillUnmount(){
+                //清除定時器
+                clearInterval(this.timer)
+            }
+            render(){
+                return(
+                    <div>
+                        <p style={{opacity:this.state.opacity}}>我是程式碼</p>
+                        <button onClick={this.btn}>按我</button>
+                    </div>
+                )
+            }
+        }
+        let root = ReactDOM.createRoot(document.getElementById('test'))
+        root.render(<Demo/>)
+    </script>
+
+
+
+
+</body>
+
+</html>
