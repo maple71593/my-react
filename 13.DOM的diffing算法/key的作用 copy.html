@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .box {
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 支持 React 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 用于将 JSX 转为 JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Person extends React.Component {
+            state = {
+                person: [
+                    { id: 1, name: '宏明', age: 18, phonenbr: '0978311160' }
+                ],
+                name: '',
+                age: '',
+                phoneber: ''
+            };
+
+            logdata = (event) => {
+                // 更新状态对象中与事件目标的名称相对应的属性值
+                this.setState({ [event.target.name]: event.target.value });
+            };
+
+            add = () => {
+                const { person, name, age, phoneber } = this.state;
+                const p = { id: person.length + 1, name, age, phoneber };
+                // 将新的人员对象添加到 person 数组中，并重置 name、age 和 phoneber 的值为空
+                this.setState({ person: [...person, p], name: '', age: '', phoneber: '' });
+            };
+
+            render() {
+                return (
+                    <div>
+                        <p>展示人員訊息</p>
+                        {/* 当输入框的值发生变化时调用 logdata 方法 */}
+                        姓名:<input type="text" onChange={this.logdata} name="name" value={this.state.name} /><br />
+                        年齡:<input type="text" onChange={this.logdata} name="age" value={this.state.age} /><br />
+                        手機號碼:<input type="text" onChange={this.logdata} name="phoneber" value={this.state.phoneber} /><br />
+                        <button onClick={this.add}>按我</button><br />
+                        <ul>
+                            {/* 使用 map 方法遍历 person 数组，并生成相应的 li 元素 */}
+                            {this.state.person.map((data) => {
+                                return <li key={data.id}>{data.name}-{data.age}-{data.phoneber}</li>;
+                            })}
+                        </ul>
+                    </div>
+                );
+            }
+        }
+
+        let root = ReactDOM.createRoot(document.getElementById('test'));
+        root.render(<Person />);
+
+    </script>
+
+
+
+
+</body>
+
+</html>
